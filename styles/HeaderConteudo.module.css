@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 75px;
+}
+
+.headerNome {
+    margin: 0px;
+    color: white;
+}
+
+.headerData {
+    color: #E0E6E9;
+}
+
+.headerBuscador {
+    display: flex;
+    align-items: center;
+}
+
+.headerBuscadorText {
+    height: 45px;
+    border: 2px solid rgba(57, 60, 73, 1);
+    border-radius: 10px;
+    color: #ABBBC2;
+    background: url("../public/img/lupa.svg") no-repeat scroll 10px 13px;
+    background-size: 15px;
+    padding-left: 30px;
+    background-color: #2D303E;
+}
+
+.headerBuscadorText::placeholder {
+    color: #ABBBC2;
+}
