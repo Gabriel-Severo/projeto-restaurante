@@ -1,0 +1,65 @@
+.headerProdutos {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.produtosTitulo {
+    color: white;
+}
+
+.produtosOrdenar {
+    width: 100px;
+    height: 40px;
+    background: url("../public/img/mais.svg") no-repeat scroll 10px 14px;
+    background-size: 12px;
+    background-color: #1F1D2B;
+    padding-left:30px;
+    color: white;
+    -webkit-appearance: none;
+    outline: none;
+    border: 1px solid rgba(57, 60, 73, 1);
+    border-radius: 5px;
+}
+
+.produtosLista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.produtoInfo {
+    position: relative;
+    width: 100%;
+    background-color: #1F1D2B;
+    display: grid;
+    grid-template-rows: 100px 30px 30px 30px;
+    justify-items: center;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 70px;
+    padding-bottom: 20px;
+}
+
+.produtoImagem {
+    position: relative;
+    bottom: 30px;
+    border-radius: 50%;
+}
+
+.produtoNome {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.produtoPreco {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.produtoQuantidade {
+    color: #ABBBC2;
+    font-size: 0.8rem;
+}
