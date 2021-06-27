@@ -1,5 +1,6 @@
+import Inicio from './Inicio'
 export default function Home() {
   return (
-    <div></div>
+    <Inicio/>
   )
 }
