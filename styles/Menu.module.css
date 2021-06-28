@@ -1,6 +1,5 @@
 .menuContainer {
-    height: 100vh;
-    width: 74;
+    width: 74px;
     background-color: #1F1D2B;
     display: flex;
     align-items: center;
