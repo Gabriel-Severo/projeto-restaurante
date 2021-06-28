@@ -28,6 +28,7 @@
     background-size: 15px;
     padding-left: 30px;
     background-color: #2D303E;
+    outline: none;
 }
 
 .headerBuscadorText::placeholder {

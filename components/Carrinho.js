@@ -25,7 +25,7 @@ export default function Carrinho() {
                         <p className={styles.carrinhoProdutoQuantidadeText}>2</p>
                     </div>
                     <p className={styles.carrinhoProdutoPrecoTotal}>$ 4,58</p>
-                    <input type="text" className={styles.carrinhoProdutoDescricao}></input>
+                    <input type="text" placeholder="Order Note..." className={styles.carrinhoProdutoDescricao}></input>
                     <a className={styles.carrinhoProdutoRemover} href="#">
                         <img className={styles.carrinhoProdutoRemoverImagem} src="/img/lixeira.svg"/>
                     </a>
@@ -41,7 +41,7 @@ export default function Carrinho() {
                         <p className={styles.carrinhoProdutoQuantidadeText}>2</p>
                     </div>
                     <p className={styles.carrinhoProdutoPrecoTotal}>$ 4,58</p>
-                    <input type="text" className={styles.carrinhoProdutoDescricao}></input>
+                    <input type="text" placeholder="Order Note..." className={styles.carrinhoProdutoDescricao}></input>
                     <a className={styles.carrinhoProdutoRemover} href="#">
                         <img className={styles.carrinhoProdutoRemoverImagem} src="/img/lixeira.svg"/>
                     </a>
@@ -57,7 +57,7 @@ export default function Carrinho() {
                         <p className={styles.carrinhoProdutoQuantidadeText}>2</p>
                     </div>
                     <p className={styles.carrinhoProdutoPrecoTotal}>$ 4,58</p>
-                    <input type="text" className={styles.carrinhoProdutoDescricao}></input>
+                    <input type="text" placeholder="Order Note..." className={styles.carrinhoProdutoDescricao}></input>
                     <a className={styles.carrinhoProdutoRemover} href="#">
                         <img className={styles.carrinhoProdutoRemoverImagem} src="/img/lixeira.svg"/>
                     </a>
