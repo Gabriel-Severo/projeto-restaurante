@@ -1,3 +1,7 @@
+.produtos {
+    height: 460px;
+    overflow: auto;
+}
 .headerProdutos {
     height: 40px;
     display: flex;
