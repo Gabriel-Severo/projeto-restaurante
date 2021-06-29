@@ -15,8 +15,8 @@
     "amount": {
       "type": "integer"
     },
-    "products": {
-      "collection": "products"
+    "product": {
+      "model": "products"
     }
   }
 }
