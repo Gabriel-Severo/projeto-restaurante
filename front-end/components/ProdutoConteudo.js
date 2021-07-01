@@ -1,39 +1,37 @@
 import styles from '../styles/ProdutoConteudo.module.css'
 
-export default function ProdutoConteudo() {
+export default function ProdutoConteudo({produtos, setOrdernarMetodo}) {
+    let formatter = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    })
+
+    function handleOrdenar(metodo) {
+        setOrdernarMetodo(metodo.target.value)
+    }
+    
     return (
         <div className={styles.produtos}>
             <div className={styles.headerProdutos}>
                 <h3 className={styles.produtosTitulo}>Choose Dishes</h3>
-                <select className={styles.produtosOrdenar}>
-                    <option value="Dine In">Dine In</option>
+                <select onChange={(selecionado) => {handleOrdenar(selecionado)}} className={styles.produtosOrdenar}>
+                    <option value="Menor Preço">Menor Preço</option>
+                    <option value="Maior Preço">Maior Preço</option>
+                    <option value="Maior Quantidade">Maior Quantidade</option>
+                    <option value="Menor Quantidade">Menor Quantidade</option>
                 </select>
             </div>
             <div className={styles.produtosLista}>
-                <div className={styles.produtoInfo}>
-                    <img className={styles.produtoImagem} src="../img/prato.png"/>
-                    <p className={styles.produtoNome}>Spicy seasoned seafood noodles</p>
-                    <p className={styles.produtoPreco}>$ 2.29</p>
-                    <p className={styles.produtoQuantidade}>20 Bowls available</p>
-                </div>
-                <div className={styles.produtoInfo}>
-                    <img className={styles.produtoImagem} src="../img/prato.png"/>
-                    <p className={styles.produtoNome}>Spicy seasoned seafood noodles</p>
-                    <p className={styles.produtoPreco}>$ 2.29</p>
-                    <p className={styles.produtoQuantidade}>20 Bowls available</p>
-                </div>
-                <div className={styles.produtoInfo}>
-                    <img className={styles.produtoImagem} src="../img/prato.png"/>
-                    <p className={styles.produtoNome}>Spicy seasoned seafood noodles</p>
-                    <p className={styles.produtoPreco}>$ 2.29</p>
-                    <p className={styles.produtoQuantidade}>20 Bowls available</p>
-                </div>
-                <div className={styles.produtoInfo}>
-                    <img className={styles.produtoImagem} src="../img/prato.png"/>
-                    <p className={styles.produtoNome}>Spicy seasoned seafood noodles</p>
-                    <p className={styles.produtoPreco}>$ 2.29</p>
-                    <p className={styles.produtoQuantidade}>20 Bowls available</p>
-                </div>
+                {produtos.map(produto => {
+                    return (
+                        <div key={produto.id} className={styles.produtoInfo}>
+                            <img className={styles.produtoImagem} src={"http://localhost:1337"+produto.image[0].url}/>
+                            <p className={styles.produtoNome}>{produto.name}</p>
+                            <p className={styles.produtoPreco}>{formatter.format(produto.price)}</p>
+                            <p className={styles.produtoQuantidade}>{produto.amount} Bowls available</p>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

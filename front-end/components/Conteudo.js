@@ -3,12 +3,12 @@ import HeaderConteudo from '../components/HeaderConteudo'
 import FiltroConteudo from '../components/FiltroConteudo'
 import ProdutoConteudo from '../components/ProdutoConteudo'
 
-export default function Conteudo() {
+export default function Conteudo({produtos, categorias, filtro, setFiltro, filtroTexto, setFiltroTexto, setOrdernarMetodo}) {
     return (
         <div className={styles.containerConteudo}>
-            <HeaderConteudo/>
-            <FiltroConteudo/>
-            <ProdutoConteudo/>
+            <HeaderConteudo filtroTexto={filtroTexto} setFiltroTexto={setFiltroTexto}/>
+            <FiltroConteudo categorias={categorias} filtro={filtro} setFiltro={setFiltro}/>
+            <ProdutoConteudo produtos={produtos} setOrdernarMetodo={setOrdernarMetodo}/>
         </div>
     )
 }
