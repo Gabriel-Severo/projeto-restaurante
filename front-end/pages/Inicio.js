@@ -53,12 +53,8 @@ export default function Inicio() {
     useEffect(() => {
         ordenarProdutos(ordenarMetodo)
         setProdutos(produtosLista.filter((produto) => {
-            const valorEncontrado = new RegExp(filtroTexto, 'i').test(produto.name)
-            if (produto.category.id === categorias[filtro].id &&
-                valorEncontrado){
-                return true
-            }
-            return false
+            const buscaEncontrada = new RegExp(filtroTexto, 'i').test(produto.name)
+            return produto.category.id === categorias[filtro].id && buscaEncontrada
         }))
     }, [filtro, categorias, filtroTexto, ordenarMetodo])
 
