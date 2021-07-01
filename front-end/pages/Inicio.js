@@ -2,6 +2,7 @@ import styles from '../styles/Inicio.module.css'
 import Menu from '../components/Menu'
 import Conteudo from '../components/Conteudo'
 import Carrinho from '../components/Carrinho'
+import Modal from '../components/Modal'
 import { useEffect, useState } from 'react'
 
 export default function Inicio() {
@@ -73,6 +74,7 @@ export default function Inicio() {
                 setOrdernarMetodo={setOrdernarMetodo}
             />
             <Carrinho/>
+            <Modal/>
         </div>
     )
 }
