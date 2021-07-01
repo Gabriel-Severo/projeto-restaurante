@@ -48,14 +48,14 @@ export default function Inicio() {
             })
             setProdutosLista([...produtosLista])
         }
-        console.log(produtosLista)
     }
 
     useEffect(() => {
         ordenarProdutos(ordenarMetodo)
         setProdutos(produtosLista.filter((produto) => {
+            const valorEncontrado = new RegExp(filtroTexto, 'i').test(produto.name)
             if (produto.category.id === categorias[filtro].id &&
-                 produto.name.toLowerCase().startsWith(filtroTexto.toLowerCase())){
+                valorEncontrado){
                 return true
             }
             return false

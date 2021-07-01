@@ -17,8 +17,8 @@ export default function ProdutoConteudo({produtos, setOrdernarMetodo}) {
                 <select onChange={(selecionado) => {handleOrdenar(selecionado)}} className={styles.produtosOrdenar}>
                     <option value="Menor Preço">Menor Preço</option>
                     <option value="Maior Preço">Maior Preço</option>
-                    <option value="Maior Quantidade">Maior Quantidade</option>
                     <option value="Menor Quantidade">Menor Quantidade</option>
+                    <option value="Maior Quantidade">Maior Quantidade</option>
                 </select>
             </div>
             <div className={styles.produtosLista}>

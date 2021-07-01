@@ -59,7 +59,7 @@
     display: grid;
     grid-template-areas: "a b c d"
                         "e e e f";
-    grid-template-columns: 50px 145px 65px 50px;
+    grid-template-columns: 50px 130px 70px 50px;
     justify-content: center;
     align-items: center;
     background-color: #1F1D2B;
