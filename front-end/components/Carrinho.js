@@ -2,7 +2,7 @@ import styles from '../styles/Carrinho.module.css'
 import { useState } from 'react'
 export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdutosLista}) {
 
-    const [envio, setEnvio] = useState('')
+    const [envio, setEnvio] = useState('Dine In')
 
     let formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -49,13 +49,24 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
         })])
     }
 
+    function isSelecionado(tipoEnvio) {
+        if(envio==tipoEnvio){
+            return true
+        }
+        return false
+    }
+
+    function selecionarEnvio(tipoEnvio) {
+        setEnvio(tipoEnvio)
+    }
+
     return (
         <div className={styles.carrinhoContainer}>
             <h3 className={styles.carrinhoTitulo}>Orders #34562</h3>
             <div className={styles.carrinhoOpcoes}>
-                <button className={styles.carrinhoOpcaoSelecionado}>Dine In</button>
-                <button className={styles.carrinhoOpcao}>To Go</button>
-                <button className={styles.carrinhoOpcao}>Delivery</button>
+                <button onClick={() => selecionarEnvio("Dine In")} className={isSelecionado("Dine In") ? styles.carrinhoOpcaoSelecionado : styles.carrinhoOpcao}>Dine In</button>
+                <button onClick={() => selecionarEnvio("To Go")} className={isSelecionado("To Go") ? styles.carrinhoOpcaoSelecionado : styles.carrinhoOpcao}>To Go</button>
+                <button onClick={() => selecionarEnvio("Delivery")} className={isSelecionado("Delivery") ? styles.carrinhoOpcaoSelecionado : styles.carrinhoOpcao}>Delivery</button>
             </div>
             <div className={styles.carrinhoLabels}>
                 <label className={styles.carrinhoLabel}>Item</label>
