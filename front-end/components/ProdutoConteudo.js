@@ -1,6 +1,6 @@
 import styles from '../styles/ProdutoConteudo.module.css'
 
-export default function ProdutoConteudo({produtos, setOrdernarMetodo}) {
+export default function ProdutoConteudo({produtos, setOrdernarMetodo, setModalAtivo, setProdutoModal}) {
     let formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -8,6 +8,11 @@ export default function ProdutoConteudo({produtos, setOrdernarMetodo}) {
 
     function handleOrdenar(metodo) {
         setOrdernarMetodo(metodo.target.value)
+    }
+
+    function handleSelecionarProduto(produto) {
+        setModalAtivo(true)
+        setProdutoModal(produto)
     }
     
     return (
@@ -24,7 +29,7 @@ export default function ProdutoConteudo({produtos, setOrdernarMetodo}) {
             <div className={styles.produtosLista}>
                 {produtos.map(produto => {
                     return (
-                        <div key={produto.id} className={styles.produtoInfo}>
+                        <div onClick={() => {handleSelecionarProduto(produto)}} key={produto.id} className={styles.produtoInfo}>
                             <img className={styles.produtoImagem} src={"http://localhost:1337"+produto.image[0].url}/>
                             <p className={styles.produtoNome}>{produto.name}</p>
                             <p className={styles.produtoPreco}>{formatter.format(produto.price)}</p>

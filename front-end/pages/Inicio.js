@@ -13,6 +13,8 @@ export default function Inicio() {
     const [filtro, setFiltro] = useState(0)
     const [filtroTexto, setFiltroTexto] = useState('')
     const [ordenarMetodo, setOrdernarMetodo] = useState('Menor Preço')
+    const [modalAtivo, setModalAtivo] = useState(false);
+    const [produtoModal, setProdutoModal] = useState({})
 
     useEffect(() => {
         async function getProdutos() {
@@ -72,9 +74,11 @@ export default function Inicio() {
                 setFiltroTexto={setFiltroTexto}
                 ordenarMetodo={ordenarMetodo}
                 setOrdernarMetodo={setOrdernarMetodo}
+                setModalAtivo={setModalAtivo}
+                setProdutoModal={setProdutoModal}
             />
             <Carrinho/>
-            <Modal/>
+            {modalAtivo && <Modal produtoModal={produtoModal} setModalAtivo={setModalAtivo}/>}
         </div>
     )
 }
