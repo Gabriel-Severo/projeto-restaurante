@@ -78,7 +78,12 @@ export default function Inicio() {
                 setModalAtivo={setModalAtivo}
                 setProdutoModal={setProdutoModal}
             />
-            <Carrinho carrinho={carrinho} setCarrinho={setCarrinho}/>
+            <Carrinho 
+                carrinho={carrinho}
+                setCarrinho={setCarrinho}
+                produtosLista={produtosLista}
+                setProdutosLista={setProdutosLista}
+            />
 
             {modalAtivo && <Modal 
                 produtoModal={produtoModal}

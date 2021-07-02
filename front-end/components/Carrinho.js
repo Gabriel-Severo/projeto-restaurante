@@ -1,10 +1,22 @@
 import styles from '../styles/Carrinho.module.css'
 
-export default function Carrinho({carrinho, setCarrinho}) {
+export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdutosLista}) {
     let formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
     })
+
+    function handleRemoveCarrinho(item) {
+        setProdutosLista(produtosLista.map((produto) => {
+            if(produto.id == item.produto.id){
+                produto.amount += item.amount
+            }
+            return produto
+        }))
+        setCarrinho(carrinho.filter((itemProduto) => {
+            return itemProduto.produto.id != item.produto.id
+        }))
+    }
 
     return (
         <div className={styles.carrinhoContainer}>
@@ -34,7 +46,7 @@ export default function Carrinho({carrinho, setCarrinho}) {
                                 </div>
                                 <p className={styles.carrinhoProdutoPrecoTotal}>{formatter.format(itemProduto.amount * itemProduto.produto.price)}</p>
                                 <input type="text" placeholder="Order Note..." className={styles.carrinhoProdutoDescricao}></input>
-                                <a className={styles.carrinhoProdutoRemover} href="#">
+                                <a onClick={() => handleRemoveCarrinho(itemProduto)} className={styles.carrinhoProdutoRemover} href="#">
                                     <img className={styles.carrinhoProdutoRemoverImagem} src="/img/lixeira.svg"/>
                                 </a>
                             </div>
