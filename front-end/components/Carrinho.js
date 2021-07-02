@@ -1,6 +1,9 @@
 import styles from '../styles/Carrinho.module.css'
-
+import { useState } from 'react'
 export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdutosLista}) {
+
+    const [envio, setEnvio] = useState('')
+
     let formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
@@ -16,6 +19,34 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
         setCarrinho(carrinho.filter((itemProduto) => {
             return itemProduto.produto.id != item.produto.id
         }))
+    }
+
+
+    function handleChangeQuantideProduto(item, itemProdutoRecebido) {
+        if(item.nativeEvent.inputType != undefined){
+            return;
+        }
+
+        const quantidade = Number(item.target.value)
+        if(quantidade < 1){
+            return;
+        }
+        const quantidadeEditada = quantidade - itemProdutoRecebido.amount
+        if(itemProdutoRecebido.produto.amount < 1 && quantidadeEditada > 0) {
+            return;
+        }
+        setProdutosLista([...produtosLista.map((produto) => {
+            if(produto.id == itemProdutoRecebido.produto.id){
+                produto.amount -= quantidadeEditada
+            }
+            return produto
+        })])
+        setCarrinho([...carrinho.map((itemProduto) => {
+            if(itemProdutoRecebido.produto.id == itemProduto.produto.id) {
+                itemProduto.amount += quantidadeEditada
+            }
+            return itemProduto
+        })])
     }
 
     return (
@@ -42,7 +73,7 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
                                     <p className={styles.carrinhoProdutoPreco}>{formatter.format(itemProduto.produto.price)}</p>
                                 </div>
                                 <div className={styles.carrinhoProdutoQuantidade}>
-                                    <p className={styles.carrinhoProdutoQuantidadeText}>{itemProduto.amount}</p>
+                                    <input max={itemProduto.produto.amount + itemProduto.amount} onChange={(evento) => {handleChangeQuantideProduto(evento, itemProduto)}} value={itemProduto.amount} type="number" className={styles.carrinhoProdutoQuantidadeText}></input>
                                 </div>
                                 <p className={styles.carrinhoProdutoPrecoTotal}>{formatter.format(itemProduto.amount * itemProduto.produto.price)}</p>
                                 <input type="text" placeholder="Order Note..." className={styles.carrinhoProdutoDescricao}></input>
