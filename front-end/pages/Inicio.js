@@ -15,6 +15,7 @@ export default function Inicio() {
     const [ordenarMetodo, setOrdernarMetodo] = useState('Menor Preço')
     const [modalAtivo, setModalAtivo] = useState(false);
     const [produtoModal, setProdutoModal] = useState({})
+    const [carrinho, setCarrinho] = useState([])
 
     useEffect(() => {
         async function getProdutos() {
@@ -77,8 +78,16 @@ export default function Inicio() {
                 setModalAtivo={setModalAtivo}
                 setProdutoModal={setProdutoModal}
             />
-            <Carrinho/>
-            {modalAtivo && <Modal produtoModal={produtoModal} setModalAtivo={setModalAtivo}/>}
+            <Carrinho carrinho={carrinho} setCarrinho={setCarrinho}/>
+
+            {modalAtivo && <Modal 
+                produtoModal={produtoModal}
+                setModalAtivo={setModalAtivo}
+                carrinho={carrinho}
+                setCarrinho={setCarrinho}
+                produtosLista={produtosLista}
+                setProdutosLista={setProdutosLista}
+            />}
         </div>
     )
 }
