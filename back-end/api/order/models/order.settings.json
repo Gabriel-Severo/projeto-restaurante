@@ -17,6 +17,9 @@
     },
     "product_orders": {
       "collection": "product-order"
+    },
+    "shipping": {
+      "type": "string"
     }
   }
 }

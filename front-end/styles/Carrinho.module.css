@@ -54,6 +54,20 @@
     overflow: auto;
 }
 
+.carrinhoProdutos::-webkit-scrollbar {
+    width: 7px;
+}
+  
+.carrinhoProdutos::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+.carrinhoProdutos::-webkit-scrollbar-thumb {
+    background-color: #111111;
+    border-radius: 20px;
+    height: 10px;
+}
+
 .carrinhoProduto {
     margin-top: 10px;
     width: 330px;

@@ -61,38 +61,41 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
     }
 
     async function handleRealizarCompra() {
-        let itensProdutos = []
-        for(let itemProduto of carrinho) {
-            const response = await fetch('http://localhost:1337/Product-Orders', {
+        if(carrinho.length != 0){
+            let itensProdutos = []
+            for(let itemProduto of carrinho) {
+                const response = await fetch('http://localhost:1337/Product-Orders', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({amount: itemProduto.amount, product: itemProduto.produto})
+                })
+                itensProdutos.push(await response.json())
+            }
+            await fetch('http://localhost:1337/orders', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({amount: itemProduto.amount, product: itemProduto.produto})
+                body: JSON.stringify(
+                    {
+                        price: carrinho.reduce((valor, itemProduto) => valor += itemProduto.amount * itemProduto.produto.price, 0),
+                        shipping: envio,
+                        product_orders: [...itensProdutos.map((itemProduto) => {
+                            return {
+                                id: itemProduto.id,
+                                amount: itemProduto.amount,
+                                product: itemProduto.product.id,
+                            }
+                        })]
+                    }
+                )
             })
-            itensProdutos.push(await response.json())
+            setCarrinho([])
         }
-        const response = await fetch('http://localhost:1337/orders', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    price: carrinho.reduce((valor, itemProduto) => valor += itemProduto.amount * itemProduto.produto.price, 0),
-                    product_orders: [...itensProdutos.map((itemProduto) => {
-                        return {
-                            id: itemProduto.id,
-                            amount: itemProduto.amount,
-                            product: itemProduto.product.id,
-                            order: null
-                        }
-                    })]
-                }
-            )
-        })
 
     }
 
