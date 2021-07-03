@@ -64,7 +64,7 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
         if(carrinho.length != 0){
             let itensProdutos = []
             for(let itemProduto of carrinho) {
-                const response = await fetch('http://localhost:1337/Product-Orders', {
+                const response = await fetch('http://localhost:1337/product-orders', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -94,6 +94,17 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
                     }
                 )
             })
+            for(let itemProduto of carrinho ) {
+                const response = await fetch(`http://localhost:1337/products/${itemProduto.produto.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(itemProduto.produto)
+                })
+                console.log(await response.json())
+            }
             setCarrinho([])
         }
 
