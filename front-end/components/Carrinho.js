@@ -150,7 +150,7 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
             <div className={styles.carrinhoPreco}>
                 <div className={styles.carrinhoDesconto}>
                     <p className={styles.carrinhoDescontoText}>Discount</p>
-                    <p className={styles.carrinhoDescontoValor}>$0</p>
+                    <p className={styles.carrinhoDescontoValor}>R$ 0,00</p>
                 </div>
                 <div className={styles.carrinhoTotal}>
                     <p className={styles.carrinhoValorTotalText}>Sub total</p>
