@@ -60,6 +60,42 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
         setEnvio(tipoEnvio)
     }
 
+    async function handleRealizarCompra() {
+        let itensProdutos = []
+        for(let itemProduto of carrinho) {
+            const response = await fetch('http://localhost:1337/Product-Orders', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({amount: itemProduto.amount, product: itemProduto.produto})
+            })
+            itensProdutos.push(await response.json())
+        }
+        const response = await fetch('http://localhost:1337/orders', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    price: carrinho.reduce((valor, itemProduto) => valor += itemProduto.amount * itemProduto.produto.price, 0),
+                    product_orders: [...itensProdutos.map((itemProduto) => {
+                        return {
+                            id: itemProduto.id,
+                            amount: itemProduto.amount,
+                            product: itemProduto.product.id,
+                            order: null
+                        }
+                    })]
+                }
+            )
+        })
+
+    }
+
     return (
         <div className={styles.carrinhoContainer}>
             <h3 className={styles.carrinhoTitulo}>Orders #34562</h3>
@@ -108,7 +144,7 @@ export default function Carrinho({carrinho, setCarrinho, produtosLista, setProdu
                         {formatter.format(carrinho.reduce((valor, itemProduto) => valor += itemProduto.amount * itemProduto.produto.price, 0))}
                     </p>
                 </div>
-                <button className={styles.carrinhoFinalizarCompra}>Continue to Payment</button>
+                <button onClick={() => {handleRealizarCompra()}} className={styles.carrinhoFinalizarCompra}>Continue to Payment</button>
             </div>
         </div>
     )
