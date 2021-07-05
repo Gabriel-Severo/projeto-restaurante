@@ -1,13 +1,16 @@
 import styles from '../styles/HeaderConteudo.module.css'
 
-export default function HeaderConteudo({filtroTexto, setFiltroTexto}) {
+export default function HeaderConteudo({setFiltroTexto}) {
     function handleFiltroTexto(busca) {
         setFiltroTexto(busca)
     }
 
     function getDate() {
-        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }
-        return new Date().toLocaleDateString("en-US", options)
+        const data = new Date()
+        return data.toLocaleDateString("en-US", {weekday: "long"}) + ", " + 
+        data.toLocaleDateString("en-US", {day: "numeric"}) + " " +
+        data.toLocaleDateString("en-US", {month: "short"}) + " " +
+        data.toLocaleDateString("en-US", {year: "numeric"})
     }
 
     return (
