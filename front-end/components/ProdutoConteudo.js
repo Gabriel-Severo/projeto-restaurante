@@ -33,7 +33,7 @@ export default function ProdutoConteudo({produtos, setOrdernarMetodo, setModalAt
                             <img className={styles.produtoImagem} src={"http://localhost:1337"+produto.image[0].url}/>
                             <p className={styles.produtoNome}>{produto.name}</p>
                             <p className={styles.produtoPreco}>{formatter.format(produto.price)}</p>
-                            <p className={styles.produtoQuantidade}>{produto.amount} Bowls available</p>
+                            <p className={styles.produtoQuantidade}>{produto.amount} Available</p>
                         </div>
                     )
                 })}
